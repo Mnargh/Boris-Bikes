@@ -18,15 +18,15 @@ describe DockingStation do
   it "bike is seen" do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.see_bike).to eq bike
+    expect(subject.see_bikes).to eq [bike]
   end
 
-  it "Should raise error if try to dock bike when at full capacity" do
-      subject.dock(Bike.new)
-      expect { subject.dock(Bike.new) }.to raise_error("Docking station is full already")
-  end
+  #it "Should raise error if try to dock bike when at full capacity" do
+    #  subject.dock(Bike.new)
+    #  expect { subject.dock(Bike.new) }.to raise_error("Docking station is full already")
+  #end
 
-  it { is_expected.to respond_to :see_bike }
+  it { is_expected.to respond_to :see_bikes }
 
   describe '#release_bike' do
     it "should release" do
@@ -37,6 +37,13 @@ describe DockingStation do
 
     it "Should raise error if no bike present" do
       expect { subject.release_bike }.to raise_error("No bikes available")
+    end
+  end
+
+  describe '#dock' do
+    it "Cannot dock more than 20 bikes in one docking station" do
+      20.times { subject.dock(Bike.new) }
+      expect { subject.dock(Bike.new) }.to raise_error("Docking station is full already")
     end
   end
 end
