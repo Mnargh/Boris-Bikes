@@ -3,8 +3,8 @@ describe DockingStation do
   it { is_expected.to respond_to :release_bike }
 
   it "Should release working bikes" do
-    bike = Bike.new
-    subject.dock(bike)
+    #bike = Bike.new
+    subject.dock double(:bike)
     expect(subject.release_bike).to be_working
   end
 
