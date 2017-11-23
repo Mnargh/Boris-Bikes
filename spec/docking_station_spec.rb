@@ -12,13 +12,13 @@ describe DockingStation do
 
   it "bike is docked" do
     bike = Bike.new
-    expect(subject.dock(bike)).to eq bike
+    expect(subject.dock(bike)).to eq subject.see_bikes
   end
 
   it "bike is seen" do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.see_bikes).to eq [bike]
+    expect(subject.see_bikes[-1]).to eq bike
   end
 
   #it "Should raise error if try to dock bike when at full capacity" do
