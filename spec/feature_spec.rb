@@ -1,2 +1,2 @@
-require "../lib/docking_station.rb"
+require "docking_station"
 dockingstation = DockingStation.new(25)
